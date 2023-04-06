@@ -1,0 +1,24 @@
+:root {
+    --color-primary: #3880ff;
+    --color-primary-contrast: #ffffff;
+    
+    --color-secondary: #3dc2ff;
+    --color-secondary-contrast: #ffffff;
+
+    --color-background-primary: #181818;
+
+    
+}
+
+#CommentList {
+    /* width: 324px;  */
+    /* height: 804px; */
+    /* background-color: var(--color-background-primary); */
+}
+
+
+
+
+.item {
+    display:flex
+}

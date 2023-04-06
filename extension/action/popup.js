@@ -18,14 +18,21 @@ const initCommon = () => {
 };
 
 const initActions = (tab) => {
+  const showSpachaCommentsButton = document.getElementById("show-spacha");
   const showCommentsButton = document.getElementById("show-comments");
   const clearCommentsButton = document.getElementById("clear-comments");
 
+  showSpachaCommentsButton.addEventListener("click", () => {
+    chrome.tabs.executeScript(tab.id, { file: "content/likeyoutube.js" });
+    chrome.tabs.insertCSS(tab.id, { file: "content/presentation.css" });
+    showSpachaCommentsButton.setAttribute("disabled", "true");
+    chrome.runtime.sendMessage({ addTabId: tab.id});
+  });  
   showCommentsButton.addEventListener("click", () => {
     chrome.tabs.executeScript(tab.id, { file: "content/presentation.js" });
     chrome.tabs.insertCSS(tab.id, { file: "content/presentation.css" });
     showCommentsButton.setAttribute("disabled", "true");
-    chrome.runtime.sendMessage({ addTabId: tab.id });
+    chrome.runtime.sendMessage({ addTabId: tab.id});
   });
   clearCommentsButton.addEventListener("click", () => {
     chrome.runtime.sendMessage({ clearComments: true });
@@ -33,8 +40,10 @@ const initActions = (tab) => {
 
   chrome.runtime.sendMessage({ hasTabId: tab.id }, ({ result }) => {
     if (result) {
+      showSpachaCommentsButton.setAttribute("disabled", "true");
       showCommentsButton.setAttribute("disabled", "true");
     } else {
+      showSpachaCommentsButton.removeAttribute("disabled");
       showCommentsButton.removeAttribute("disabled");
     }
   });

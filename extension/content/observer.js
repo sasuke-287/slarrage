@@ -31,6 +31,9 @@ window.addEventListener("load", () => {
       // アイコンを取得
       var iconUrl = toIcons();
 
+      // 名前を取得
+      var userName = toUserName();
+
       // 自分で投稿したメッセージには仮のIDとしてタイムスタンプにxが含まれているっぽいので、これを無視
       if (node.id.indexOf("x") >= 0) {
         return;
@@ -60,24 +63,30 @@ window.addEventListener("load", () => {
       }
 
       // その他、テキストのみ、テキスト絵文字混合の場合
-      return toMessage(targetDiv, iconUrl);
+      return toMessage(targetDiv, iconUrl, userName);
     }).filter((message) => message != null);
   };
 
   const toIcons = () => {
     var iconSpan = document.getElementsByClassName("c-base_icon__width_only_container");
     var lastIconSpan = iconSpan[iconSpan.length - 1];
+    var IconImg = lastIconSpan.firstChild;
 
-    var iconImg = lastIconSpan.firstElementChild;
-
-    return iconImg.getAttribute('src');
+    return IconImg.src;
   };
 
-  const toMessage = (element, iconUrl) => {
+  const toUserName = () => {
+    var UserNameTargets = document.getElementsByClassName("c-message__sender_button");
+    var UserName = UserNameTargets[UserNameTargets.length - 1];
+
+    return UserName.textContent;
+  };  
+
+  const toMessage = (element, iconUrl, userName) => {
     const commands = extractCommands(element.innerText);
     const contents = Array.from(element.childNodes, (child) => {
       if (child.nodeName === "#text") {
-        return { text: removeCommands(child.textContent), iconUrl: iconUrl };
+        return { text: removeCommands(child.textContent), iconUrl: iconUrl, userName: userName };
       }
       const img = child.nodeName === "IMG" ? child : child.querySelector("img");
       return { imageUrl: img?.src };

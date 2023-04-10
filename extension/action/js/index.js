@@ -19,13 +19,15 @@ const observer = new MutationObserver((mutations) => {
   // 変化が発生したときの処理を記述
   mutations.forEach((mutation) => {
     mutation.addedNodes.forEach((node) => {
+      var userMessage = node.getElementsByClassName('user-message')[0].textContent;
       var iconUrl = node.getElementsByTagName('img')[0];
+      var userName = node.getElementsByClassName('user-name')[0].textContent;
 
       new Spacha(node, {
-        message: node.textContent,
+        message: userMessage,
         // price: 500,
         user: {
-          name: "Spacha User",
+          name: userName,
           img: iconUrl,
         },
       });

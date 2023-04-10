@@ -18,16 +18,18 @@ if (typeof slarragePresentationLoaded === "undefined") {
 
     const showSuperChat = async (message) => {
       // メッセージテキストの抽出
-      const text = getMessageText(message);
-      const iconUrl = getIconUrl(message);
+      // テキストは展開する(複数行メッセージ対策)
+      const text = getMessageText(message).join('');
+      const iconUrl = getIconUrl(message)[0];
+      const userName = getUserName(message)[0];
 
       var comment_element = document.getElementById("CommentList");
 
       comment_element.insertAdjacentHTML('beforeend', 
         '<div class="spc-div">'
-        + text
-        +'<img src="' + iconUrl + '">'
-        +'</img>'
+        +'<div class="user-message">' + text + '</div>'
+        +'<img src="' + iconUrl + '">' +'</img>'
+        +'<div class="user-name">' + userName + '</div>'
         +'</div>');
     };
 
@@ -45,7 +47,15 @@ if (typeof slarragePresentationLoaded === "undefined") {
           return iconUrl;
         }
       });
-    };    
+    };
+
+    const getUserName = ({ contents }) => {
+      return contents.map(({ userName }) => {
+        if (userName != null) {
+          return userName;
+        }
+      });
+    };
 
   })();
 }

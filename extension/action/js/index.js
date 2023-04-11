@@ -33,6 +33,10 @@ const observer = new MutationObserver((mutations) => {
       });
     });
   });
+
+  var comment_element = document.getElementById("CommentList");
+  // 最下部までスクロールする
+  comment_element.scrollTop = comment_element.scrollHeight;
 });
 
 // 監視の開始

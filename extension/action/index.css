@@ -12,11 +12,14 @@
 
 #CommentList {
     /* width: 324px;  */
-    /* height: 804px; */
-    /* background-color: var(--color-background-primary); */
+    height: 700px;
+    background-color: var(--color-background-primary);
+    overflow: scroll;
 }
 
-
+.spc-div {
+    color: white;
+}
 
 
 .item {

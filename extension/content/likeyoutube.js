@@ -33,7 +33,7 @@ if (typeof slarragePresentationLoaded === "undefined") {
         +'<div class="user-message">' + text + '</div>'
         +'<img class="icon-url" src="' + iconUrl + '">' +'</img>'
         +'<div class="user-name">' + userName + '</div>'
-        +'</div>');
+        +'</div>');  
     };
 
     const getMessageText = ({ contents }) => {

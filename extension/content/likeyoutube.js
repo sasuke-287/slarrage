@@ -19,16 +19,19 @@ if (typeof slarragePresentationLoaded === "undefined") {
     const showSuperChat = async (message) => {
       // メッセージテキストの抽出
       // テキストは展開する(複数行メッセージ対策)
-      const text = getMessageText(message).join('');
-      const iconUrl = getIconUrl(message)[0];
-      const userName = getUserName(message)[0];
+      const texts = getMessageText(message);
+      const iconUrls = getIconUrl(message);
+      const userNames = getUserName(message);
 
+      const text = texts.join('');
+      const iconUrl = iconUrls[0];
+      const userName = userNames[0];
       var comment_element = document.getElementById("CommentList");
 
       comment_element.insertAdjacentHTML('beforeend', 
         '<div class="spc-div">'
         +'<div class="user-message">' + text + '</div>'
-        +'<img src="' + iconUrl + '">' +'</img>'
+        +'<img class="icon-url" src="' + iconUrl + '">' +'</img>'
         +'<div class="user-name">' + userName + '</div>'
         +'</div>');
     };

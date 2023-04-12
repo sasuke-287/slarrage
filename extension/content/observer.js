@@ -54,12 +54,6 @@ window.addEventListener("load", () => {
         if (botMessageSpan != null) {
           return toMessage(botMessageSpan);
         }
-
-        // 画像や絵文字のみの場合
-        const img = node.querySelector("img");
-        return img != null
-          ? { contents: [{ imageUrl: img.src }], commands: ["huge"], iconUrl: iconUrl }
-          : null;
       }
 
       // その他、テキストのみ、テキスト絵文字混合の場合
@@ -68,7 +62,9 @@ window.addEventListener("load", () => {
   };
 
   const toIcons = () => {
-    var iconSpan = document.getElementsByClassName("c-base_icon__width_only_container");
+    var iconSpan = document.getElementsByClassName(
+      "c-base_icon__width_only_container"
+    );
     var lastIconSpan = iconSpan[iconSpan.length - 1];
     var IconImg = lastIconSpan.firstChild;
 
@@ -76,20 +72,34 @@ window.addEventListener("load", () => {
   };
 
   const toUserName = () => {
-    var UserNameTargets = document.getElementsByClassName("c-message__sender_button");
+    var UserNameTargets = document.getElementsByClassName(
+      "c-message__sender_button"
+    );
     var UserName = UserNameTargets[UserNameTargets.length - 1];
 
     return UserName.textContent;
-  };  
+  };
 
   const toMessage = (element, iconUrl, userName) => {
     const commands = extractCommands(element.innerText);
     const contents = Array.from(element.childNodes, (child) => {
       if (child.nodeName === "#text") {
-        return { text: removeCommands(child.textContent), iconUrl: iconUrl, userName: userName };
+        return {
+          text: removeCommands(child.textContent),
+          iconUrl: iconUrl,
+          userName: userName,
+        };
       }
       const img = child.nodeName === "IMG" ? child : child.querySelector("img");
-      return { imageUrl: img?.src };
+      if (img != null) {
+      return { text: "{" + img.dataset.stringifyEmoji + "}", iconUrl: iconUrl, userName: userName, };
+      }
+
+      return {
+        text: removeCommands(child.textContent),
+        iconUrl: iconUrl,
+        userName: userName,
+      };
     });
     return { contents, commands };
   };

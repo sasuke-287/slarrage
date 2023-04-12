@@ -22,10 +22,13 @@ const observer = new MutationObserver((mutations) => {
       var userMessage = node.getElementsByClassName('user-message')[0].textContent;
       var iconUrl = node.getElementsByTagName('img')[0];
       var userName = node.getElementsByClassName('user-name')[0].textContent;
+      var value = parseFloat(node.getElementsByClassName('value')[0].textContent);
+      // 数値型にできない場合は500円をデフォルトに
+      value = isNaN(value) ? 500 : value;
 
       new Spacha(node, {
         message: userMessage,
-        // price: 500,
+        price: value,
         user: {
           name: userName,
           img: iconUrl,

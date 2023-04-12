@@ -23,6 +23,7 @@ if (typeof slarragePresentationLoaded === "undefined") {
       const iconUrls = getIconUrl(message);
       const userNames = getUserName(message);
 
+      const value = message.commands[0];
       const text = texts.join('');
       const iconUrl = iconUrls[0];
       const userName = userNames[0];
@@ -33,6 +34,7 @@ if (typeof slarragePresentationLoaded === "undefined") {
         +'<div class="user-message">' + text + '</div>'
         +'<img class="icon-url" src="' + iconUrl + '">' +'</img>'
         +'<div class="user-name">' + userName + '</div>'
+        +'<div class="value">' + value + '</div>'
         +'</div>');  
     };
 

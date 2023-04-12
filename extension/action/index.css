@@ -12,13 +12,14 @@
 
 #CommentList {
     /* width: 324px;  */
-    height: 700px;
+    height: 800px;
     background-color: var(--color-background-primary);
     overflow: scroll;
 }
 
 .spc-div {
     color: white;
+    margin: 10px;
 }
 
 

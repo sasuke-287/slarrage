@@ -24,16 +24,17 @@ if (typeof slarragePresentationLoaded === "undefined") {
       const userNames = getUserName(message);
 
       const value = message.commands[0];
-      const text = texts.join('');
+      var text = texts.join('').replace(/(<([^>]+)>)/gi, '');
+      text = !text || !text.match(/\S/g) ? '(メッセージなし)' : text;
       const iconUrl = iconUrls[0];
       const userName = userNames[0];
       var comment_element = document.getElementById("CommentList");
 
       comment_element.insertAdjacentHTML('beforeend', 
         '<div class="spc-div">'
-        +'<div class="user-message">' + text + '</div>'
         +'<img class="icon-url" src="' + iconUrl + '">' +'</img>'
         +'<div class="user-name">' + userName + '</div>'
+        +'<div class="user-message">' + text + '</div>'
         +'<div class="value">' + value + '</div>'
         +'</div>');  
     };

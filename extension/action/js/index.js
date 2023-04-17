@@ -57,7 +57,10 @@ function UpdateRank(userName, value) {
     return sum + element.price;
   }, 0);
 
-  totalElement.textContent = totalPrice;
+  totalElement.textContent = totalPrice.toLocaleString("ja-JP", {
+    style: "currency",
+    currency: "JPY",
+  });
 
   // 単体金額ランキング
   var priceRankElement = document.getElementsByClassName("price-ranking")[0];
@@ -67,20 +70,29 @@ function UpdateRank(userName, value) {
   priceRankElement.getElementsByClassName("user-name")[0].textContent =
     sortValue[0].userName;
   priceRankElement.getElementsByClassName("value")[0].textContent =
-    sortValue[0].price;
+    sortValue[0].price.toLocaleString("ja-JP", {
+      style: "currency",
+      currency: "JPY",
+    });
 
   if (typeof sortValue[1] !== "undefined") {
     priceRankElement.getElementsByClassName("user-name")[1].textContent =
       sortValue[1].userName;
     priceRankElement.getElementsByClassName("value")[1].textContent =
-      sortValue[1].price;
+      sortValue[1].price.toLocaleString("ja-JP", {
+        style: "currency",
+        currency: "JPY",
+      });
   }
 
   if (typeof sortValue[2] !== "undefined") {
     priceRankElement.getElementsByClassName("user-name")[2].textContent =
       sortValue[2].userName;
     priceRankElement.getElementsByClassName("value")[2].textContent =
-      sortValue[2].price;
+      sortValue[2].price.toLocaleString("ja-JP", {
+        style: "currency",
+        currency: "JPY",
+      });
   }
 
   // 合計金額ランキング
@@ -123,20 +135,29 @@ function UpdateRank(userName, value) {
   sumRankElement.getElementsByClassName("user-name")[0].textContent =
     sumSortValue[0].userName;
   sumRankElement.getElementsByClassName("value")[0].textContent =
-    sumSortValue[0].price;
+    sumSortValue[0].price.toLocaleString("ja-JP", {
+      style: "currency",
+      currency: "JPY",
+    });
 
   if (typeof sumSortValue[1] !== "undefined") {
     sumRankElement.getElementsByClassName("user-name")[1].textContent =
       sumSortValue[1].userName;
     sumRankElement.getElementsByClassName("value")[1].textContent =
-      sumSortValue[1].price;
+      sumSortValue[1].price.toLocaleString("ja-JP", {
+        style: "currency",
+        currency: "JPY",
+      });
   }
 
   if (typeof sumSortValue[2] !== "undefined") {
     sumRankElement.getElementsByClassName("user-name")[2].textContent =
       sumSortValue[2].userName;
     sumRankElement.getElementsByClassName("value")[2].textContent =
-      sumSortValue[2].price;
+      sumSortValue[2].price.toLocaleString("ja-JP", {
+        style: "currency",
+        currency: "JPY",
+      });
   }
 
   timesRankElement.getElementsByClassName("user-name")[0].textContent =

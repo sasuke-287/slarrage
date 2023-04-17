@@ -55,3 +55,15 @@ div:has(> #spc-upper-div) {
 .item {
     display: flex;
 }
+
+.price-ranking {
+    padding : 0
+}
+
+.sum-price-ranking {
+    padding : 0
+}
+
+.spacha-times-ranking {
+    padding : 0
+}
